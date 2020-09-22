@@ -195,7 +195,7 @@ Module['FS_createPath']('/assets/shaders', 'glsl330', true, true);
     }
   
    }
-   loadPackage({"files": [{"filename": "/assets/shaders/glsl100/base_lighting.vs", "start": 0, "end": 1578, "audio": 0}, {"filename": "/assets/shaders/glsl100/lighting.fs", "start": 1578, "end": 3630, "audio": 0}, {"filename": "/assets/shaders/glsl330/base_lighting.vs", "start": 3630, "end": 4407, "audio": 0}, {"filename": "/assets/shaders/glsl330/lighting.fs", "start": 4407, "end": 6449, "audio": 0}], "remote_package_size": 6449, "package_uuid": "275ca810-fa9f-47a7-b3e9-1ead00f8960a"});
+   loadPackage({"files": [{"filename": "/assets/shaders/glsl100/base_lighting.vs", "start": 0, "end": 1578, "audio": 0}, {"filename": "/assets/shaders/glsl100/lighting.fs", "start": 1578, "end": 3630, "audio": 0}, {"filename": "/assets/shaders/glsl330/base_lighting.vs", "start": 3630, "end": 4407, "audio": 0}, {"filename": "/assets/shaders/glsl330/lighting.fs", "start": 4407, "end": 6449, "audio": 0}], "remote_package_size": 6449, "package_uuid": "0ce171f2-f0fa-4e72-a02c-5c5578da5fc4"});
   
   })();
   
