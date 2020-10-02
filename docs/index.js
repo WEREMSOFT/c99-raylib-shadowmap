@@ -195,7 +195,7 @@ Module['FS_createPath']('/assets/shaders', 'glsl330', true, true);
     }
   
    }
-   loadPackage({"files": [{"filename": "/assets/shaders/glsl100/base_lighting.vs", "start": 0, "end": 1578, "audio": 0}, {"filename": "/assets/shaders/glsl100/lighting.fs", "start": 1578, "end": 3630, "audio": 0}, {"filename": "/assets/shaders/glsl330/base_lighting.vs", "start": 3630, "end": 4407, "audio": 0}, {"filename": "/assets/shaders/glsl330/lighting.fs", "start": 4407, "end": 6449, "audio": 0}], "remote_package_size": 6449, "package_uuid": "0ce171f2-f0fa-4e72-a02c-5c5578da5fc4"});
+   loadPackage({"files": [{"filename": "/assets/shaders/glsl100/base_lighting.vs", "start": 0, "end": 1578, "audio": 0}, {"filename": "/assets/shaders/glsl100/lighting.fs", "start": 1578, "end": 3630, "audio": 0}, {"filename": "/assets/shaders/glsl330/base_lighting.vs", "start": 3630, "end": 4407, "audio": 0}, {"filename": "/assets/shaders/glsl330/lighting.fs", "start": 4407, "end": 6449, "audio": 0}], "remote_package_size": 6449, "package_uuid": "8766c3eb-9af3-4d2e-bb4a-e3839ee635a4"});
   
   })();
   
@@ -814,8 +814,8 @@ var wasmMemory;
 // In the wasm backend, we polyfill the WebAssembly object,
 // so this creates a (non-native-wasm) table for us.
 var wasmTable = new WebAssembly.Table({
-  'initial': 190,
-  'maximum': 190 + 0,
+  'initial': 191,
+  'maximum': 191 + 0,
   'element': 'anyfunc'
 });
 
@@ -1429,11 +1429,11 @@ function updateGlobalBufferAndViews(buf) {
 }
 
 var STATIC_BASE = 1024,
-    STACK_BASE = 5276384,
+    STACK_BASE = 5276560,
     STACKTOP = STACK_BASE,
-    STACK_MAX = 33504,
-    DYNAMIC_BASE = 5276384,
-    DYNAMICTOP_PTR = 33344;
+    STACK_MAX = 33680,
+    DYNAMIC_BASE = 5276560,
+    DYNAMICTOP_PTR = 33520;
 
 
 
@@ -1890,7 +1890,7 @@ var ASM_CONSTS = {
 
 
 
-// STATICTOP = STATIC_BASE + 32480;
+// STATICTOP = STATIC_BASE + 32656;
 /* global initializers */  __ATINIT__.push({ func: function() { ___wasm_call_ctors() } });
 
 
@@ -5501,7 +5501,7 @@ var ASM_CONSTS = {
     }
 
   function _emscripten_get_sbrk_ptr() {
-      return 33344;
+      return 33520;
     }
 
   
