@@ -71,7 +71,7 @@ void update_frame()
 
     phase = Vector3Add(phase, (Vector3){0.01f, 0.02f, 0.03f});
     torus.transform = MatrixRotateXYZ(phase);
-    UpdateCamera(&camera);
+    UpdateCamera(&camera, CAMERA_ORBITAL);
 
     torus.materials[0].shader = shader_default;
     column.materials[0].shader = shader_default;
@@ -141,15 +141,11 @@ int main(void)
     camera.target = (Vector3){.0f, .0f, .0f};
     camera.position = (Vector3){0.0f, 10.0f, 10.0f};
     camera.up = (Vector3){0.0f, 1.0f, 0.0f};
-    camera.type = CAMERA_PERSPECTIVE;
-    SetCameraMode(camera, CAMERA_ORBITAL);
 
     camera_shadow_map.fovy = 20.0f;
     camera_shadow_map.target = (Vector3){.0f, .0f, .0f};
     camera_shadow_map.position = (Vector3){0.0f, 10.0f, 0.0f};
     camera_shadow_map.up = (Vector3){0.0f, 0.0f,-1.0f};
-    camera_shadow_map.type = CAMERA_PERSPECTIVE;
-
 
     torus = LoadModelFromMesh(GenMeshTorus(.3f, 2.f, 20, 20));
     column = LoadModelFromMesh(GenMeshCylinder(0.3f, 7.f, 10));
