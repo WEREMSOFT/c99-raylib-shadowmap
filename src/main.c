@@ -33,11 +33,11 @@ Light light_1 = {0};
 void shader_init(){
     shader = LoadShader(FormatText("./assets/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
                             FormatText("./assets/shaders/glsl%i/lighting.fs", GLSL_VERSION));
-    shader.locs[LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
-    shader.locs[LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+    shader.locs[SHADER_LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
+    shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
 
     int ambientLoc = GetShaderLocation(shader, "ambient");
-    SetShaderValue(shader, ambientLoc, (float[4]){ 0.2f, 0.2f, 0.2f, 1.0f }, UNIFORM_VEC4);
+    SetShaderValue(shader, ambientLoc, (float[4]){ 0.2f, 0.2f, 0.2f, 1.0f }, SHADER_UNIFORM_VEC4);
 
     light_1 = CreateLight(LIGHT_POINT, (Vector3){ 0, 15.f, 0}, Vector3Zero(), PURPLE, shader);
     UpdateLightValues(shader, light_1);
@@ -158,7 +158,7 @@ int main(void)
     quad = LoadModelFromMesh(plane_mesh);
     render_texture = LoadRenderTexture(160, 100);
 
-    quad.materials[0].maps[MAP_DIFFUSE].texture = render_texture.texture;
+    quad.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = render_texture.texture;
 
 #ifdef OS_WEB
     emscripten_set_main_loop(update_frame, 0, 1);
