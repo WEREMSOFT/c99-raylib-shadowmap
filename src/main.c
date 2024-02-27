@@ -31,8 +31,9 @@ Shader shader_default = {0};
 Light light_1 = {0};
 
 void shader_init(){
-    shader = LoadShader(FormatText("./assets/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
-                            FormatText("./assets/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+    shader = LoadShader(TextFormat("./assets/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
+                        TextFormat("./assets/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+
     shader.locs[SHADER_LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
     shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
 
