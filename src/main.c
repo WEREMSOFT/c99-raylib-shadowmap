@@ -31,13 +31,14 @@ Shader shader_default = {0};
 Light light_1 = {0};
 
 void shader_init(){
-    shader = LoadShader(FormatText("./assets/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
-                            FormatText("./assets/shaders/glsl%i/lighting.fs", GLSL_VERSION));
-    shader.locs[LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
-    shader.locs[LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
+    shader = LoadShader(TextFormat("./assets/shaders/glsl%i/base_lighting.vs", GLSL_VERSION),
+                        TextFormat("./assets/shaders/glsl%i/lighting.fs", GLSL_VERSION));
+
+    shader.locs[SHADER_LOC_MATRIX_MODEL] = GetShaderLocation(shader, "matModel");
+    shader.locs[SHADER_LOC_VECTOR_VIEW] = GetShaderLocation(shader, "viewPos");
 
     int ambientLoc = GetShaderLocation(shader, "ambient");
-    SetShaderValue(shader, ambientLoc, (float[4]){ 0.2f, 0.2f, 0.2f, 1.0f }, UNIFORM_VEC4);
+    SetShaderValue(shader, ambientLoc, (float[4]){ 0.2f, 0.2f, 0.2f, 1.0f }, SHADER_UNIFORM_VEC4);
 
     light_1 = CreateLight(LIGHT_POINT, (Vector3){ 0, 15.f, 0}, Vector3Zero(), PURPLE, shader);
     UpdateLightValues(shader, light_1);
@@ -71,7 +72,7 @@ void update_frame()
 
     phase = Vector3Add(phase, (Vector3){0.01f, 0.02f, 0.03f});
     torus.transform = MatrixRotateXYZ(phase);
-    UpdateCamera(&camera);
+    UpdateCamera(&camera, CAMERA_ORBITAL);
 
     torus.materials[0].shader = shader_default;
     column.materials[0].shader = shader_default;
@@ -141,15 +142,11 @@ int main(void)
     camera.target = (Vector3){.0f, .0f, .0f};
     camera.position = (Vector3){0.0f, 10.0f, 10.0f};
     camera.up = (Vector3){0.0f, 1.0f, 0.0f};
-    camera.type = CAMERA_PERSPECTIVE;
-    SetCameraMode(camera, CAMERA_ORBITAL);
 
     camera_shadow_map.fovy = 20.0f;
     camera_shadow_map.target = (Vector3){.0f, .0f, .0f};
     camera_shadow_map.position = (Vector3){0.0f, 10.0f, 0.0f};
     camera_shadow_map.up = (Vector3){0.0f, 0.0f,-1.0f};
-    camera_shadow_map.type = CAMERA_PERSPECTIVE;
-
 
     torus = LoadModelFromMesh(GenMeshTorus(.3f, 2.f, 20, 20));
     column = LoadModelFromMesh(GenMeshCylinder(0.3f, 7.f, 10));
@@ -158,7 +155,7 @@ int main(void)
     quad = LoadModelFromMesh(plane_mesh);
     render_texture = LoadRenderTexture(160, 100);
 
-    quad.materials[0].maps[MAP_DIFFUSE].texture = render_texture.texture;
+    quad.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = render_texture.texture;
 
 #ifdef OS_WEB
     emscripten_set_main_loop(update_frame, 0, 1);
